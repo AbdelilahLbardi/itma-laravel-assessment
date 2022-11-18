@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\Jobs\DeleteOldUrls;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
 
 class RemoveOldUrls extends Command
 {
@@ -13,7 +12,7 @@ class RemoveOldUrls extends Command
      *
      * @var string
      */
-    protected $signature = 'urls:clear {days=30}';
+    protected $signature = 'urls:clear';
 
     /**
      * The console command description.
@@ -29,7 +28,7 @@ class RemoveOldUrls extends Command
      */
     public function handle()
     {
-        DeleteOldUrls::dispatch($this->argument('days'));
+        DeleteOldUrls::dispatch();
 
         return Command::SUCCESS;
     }

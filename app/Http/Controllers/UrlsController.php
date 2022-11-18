@@ -39,7 +39,7 @@ class UrlsController
                  */
                 function ($attribute, $value, $fail) {
                     if (str_starts_with($value, config('app.url'))) {
-                        $fail('You cannot use our URL as destination.');
+                        $fail(__('You cannot use our URL as destination.'));
                     }
                 },
             ]

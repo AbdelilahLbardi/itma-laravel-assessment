@@ -11,6 +11,10 @@ To install and compile frontend assets `npm isntall && npm run build`
 
 Tests can be executed by running the following command `php artisan test`
 
+# Clearing expired jobs
+
+Expired jobs can be cleared by calling `php artisan urls:clear`. However, in case you want to change the expiry days, it is configurable and can get done from config/services.
+
 # Features
 
 - Long URL shortening.

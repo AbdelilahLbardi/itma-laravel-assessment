@@ -31,4 +31,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'url_deletion' => [
+        'expiry_days' => env('URL_EXPIRY_DAYS', 30)
+    ]
+
 ];

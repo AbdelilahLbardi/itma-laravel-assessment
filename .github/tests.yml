@@ -54,7 +54,9 @@ jobs:
           DB_PORT: ${{ job.services.mysql.ports['3306'] }}
 
       - name: Prepare tests
-        run: cp phpunit.xml.example phpunit.xml
+        run: |
+          cp phpunit.xml phpunit.xml.bkp
+          cp phpunit.xml.dev phpunit.xml
 
       - name: Test with phpunit
         run: timeout 1200 php artisan test --coverage-clover=coverage.xml

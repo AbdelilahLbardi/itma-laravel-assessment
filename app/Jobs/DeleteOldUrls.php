@@ -14,15 +14,13 @@ class DeleteOldUrls implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected ?int $days;
-
-    public function __construct(?int $days = 30)
+    public function __construct()
     {
-        $this->days = $days;
+        //
     }
 
     public function handle(UrlService $urlService)
     {
-        $urlService->deleteOldUrls($this->days);
+        $urlService->deleteOldUrls();
     }
 }

@@ -19,6 +19,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/dashboard';
 
+    public const CURRENT_API_VERSION = 'v1';
+
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
      *

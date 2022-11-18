@@ -19,8 +19,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::group(['prefix' => 'v1'], function () {
-
-    Route::apiResource('urls', \App\Http\Controllers\Api\UrlsController::class)->except('index', 'show', 'update', 'destroy');
-
-});
+Route::prefix(\App\Providers\RouteServiceProvider::CURRENT_API_VERSION)
+    ->name(\App\Providers\RouteServiceProvider::CURRENT_API_VERSION . '.')
+    ->group(function () {
+        Route::apiResource('urls', \App\Http\Controllers\Api\UrlsController::class)->except('index', 'show', 'update', 'destroy');
+    });

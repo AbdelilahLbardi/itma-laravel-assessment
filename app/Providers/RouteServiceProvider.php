@@ -19,6 +19,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/dashboard';
 
+    public const CURRENT_API_VERSION = 'v1';
+
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
      *
@@ -45,8 +47,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function configureRateLimiting()
     {
-        RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
-        });
+        RateLimiter::for('api', fn () => Limit::perMinute(60)->by(request()->user()?->id ?: request()->ip()));
     }
 }

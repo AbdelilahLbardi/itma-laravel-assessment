@@ -9,15 +9,13 @@ use Illuminate\Support\Facades\DB;
 class UrlService
 {
 
-    public function deleteOldUrls(?int $days = 30)
+    public function deleteOldUrls()
     {
-        if (empty($days)) {
-            $days = 30;
-        }
-
-        DB::table('urls')
-            ->whereRaw('DATEDIFF(updated_at, created_at) >= ?', [$days])
-            ->delete();
+        DB::transaction(function () {
+            DB::table('urls')
+                ->whereRaw("DATEDIFF(?, updated_at) >= ?", [now()->format('Y-m-d'), config('services.url_deletion.expiry_days')])
+                ->delete();
+        });
     }
 
 }
